@@ -1,0 +1,4 @@
+name: SheepAwareLimit
+version: '${project.version}'
+main: dev.mcloudtw.shal.Main
+api-version: '1.21'
