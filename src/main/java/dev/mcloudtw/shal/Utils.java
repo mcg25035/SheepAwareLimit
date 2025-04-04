@@ -17,27 +17,19 @@ public class Utils {
 
         Vector[] wall = new Vector[]{
                 new Vector(0, -1, 0),
-                new Vector(1, 0, 0),
-                new Vector(-1, 0, 0),
-                new Vector(0, 0, 1),
-                new Vector(0, 0, -1)
+                new Vector(1, 1, 0),
+                new Vector(-1, 1, 0),
+                new Vector(0, 1, 1),
+                new Vector(0, 1, -1)
         };
 
         Location entityLocation = entity.getLocation().toBlockLocation();
 
-        int debugCount = 0;
-
         for (Vector vector : wall) {
-            boolean isBlock = true;
-            for (int i = 0; i < (vector.getY() == 0 ? 2 : 1); i++) {
-                Location location = entityLocation.clone().add(vector.clone()).add(0, i, 0);
-                isBlock = isBlock && !location.getBlock().isPassable();
-                debugCount++;
+            Location location = entityLocation.clone().add(vector.clone());
+            if (location.getBlock().isPassable()) {
+                return false;
             }
-
-            if (!isBlock) return false;
-
-
         }
         return true;
     }
